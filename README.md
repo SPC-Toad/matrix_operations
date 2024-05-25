@@ -56,8 +56,3 @@ B = np.array([[2, 1, -1, 8],
 gaussian_elimination(B)
 print("Reduced Echelon Form:", B)
 ```
-
-## License
-
-This project is licensed under the MIT License.
-```
