@@ -1,58 +1,120 @@
-# Matrix Operations and Gaussian Elimination
+# Matrix Operations Project
 
-This repository contains Python scripts for performing various matrix operations and Gaussian elimination. The provided scripts are `hw03prog.py` and `gauss.py`.
+This project implements various matrix operations in Python, including Gaussian elimination and other matrix manipulations.
 
-## Files
+## Project Structure
 
-- `hw03prog.py`: Contains functions for matrix operations such as checking equality, matrix-vector multiplication, creating matrices from vectors, and verifying the consistency of augmented matrices.
-- `gauss.py`: Contains functions related to Gaussian elimination, including swapping rows, checking for inconsistent rows, and performing the elimination and back substitution phases.
+- **gauss.py**: This script contains the implementation of Gaussian elimination.
+- **matrix_operation.py**: This script includes various matrix operations such as addition, subtraction, multiplication, and inversion.
+- **Makefile**: This file is used to automate the build process of the project.
 
-## Functions in `hw03prog.py`
+## Requirements
 
-1. **mat_eq(a, b)**: Checks if two matrices are equal.
-2. **vec_eq(u, v)**: Checks if two vectors are equal.
-3. **mat_vec_mul(a, v)**: Multiplies a matrix with a vector.
-4. **mat_of_vecs(vs)**: Creates a matrix from a list of column vectors.
-5. **vecs_of_mat(a)**: Creates a list of column vectors from a matrix.
-6. **add_col(a, v)**: Adds a column to a matrix.
-7. **is_consistent_aug(a)**: Checks if an augmented matrix is consistent.
-
-## Functions in `gauss.py`
-
-1. **swap_rows(a, i, j)**: Swaps rows \(i\) and \(j\) in matrix \(a\).
-2. **is_inconsistent_row(r)**: Checks if a row is inconsistent.
-3. **num_of_rows(a)**: Returns the number of rows in a matrix.
-4. **leftmost_nonzero_index(a, row_index)**: Finds the leftmost non-zero entry in a row.
-5. **zero_in_pivot_column(a, lower_row_index, pivot_row_index, pivot_col_index)**: Eliminates the entry in the pivot column for the lower row.
-6. **scale_to_one_in_pivot_column(a, pivot_row_index, pivot_col_index)**: Scales the pivot row so that the pivot entry is 1.
-7. **elimination_phase(a)**: Converts a matrix into echelon form.
-8. **back_substitution_phase(a)**: Converts a matrix in echelon form into one in reduced echelon form.
-9. **gaussian_elimination(a)**: Converts a matrix into reduced echelon form.
+- Python 3.x
 
 ## Usage
 
-1. Import the necessary functions from the scripts.
-2. Use the functions as required for matrix operations or Gaussian elimination.
+### Running Gaussian Elimination
 
-### Example
+To run the Gaussian elimination script, execute the following command:
+
+```bash
+python gauss.py
+```
+
+### Running Matrix Operations
+
+To run the matrix operations script, execute the following command:
+
+```bash
+python matrix_operation.py
+```
+
+### Building the Project
+
+To build the project using the Makefile, run:
+
+```bash
+make
+```
+
+This will execute the commands specified in the Makefile to build and run the project.
+
+## Project Details
+
+### gauss.py
+
+This script contains functions to perform Gaussian elimination on a given matrix. It includes the following functions:
+
+- `gaussian_elimination(matrix)`: Performs Gaussian elimination on the input matrix and returns the row-echelon form of the matrix.
+
+### matrix_operation.py
+
+This script contains various matrix operations, including:
+
+- `add_matrices(matrix1, matrix2)`: Adds two matrices.
+- `subtract_matrices(matrix1, matrix2)`: Subtracts the second matrix from the first matrix.
+- `multiply_matrices(matrix1, matrix2)`: Multiplies two matrices.
+- `invert_matrix(matrix)`: Inverts the given matrix (if possible).
+
+### Makefile
+
+The Makefile includes targets to build and run the project. The main targets are:
+
+- `all`: Builds the project by running the Python scripts.
+- `clean`: Cleans up any generated files.
+
+To build and run the project using the Makefile, simply run `make` in the project directory.
+
+## Example
+
+Here is an example of how to use the scripts in this project:
+
+### Gaussian Elimination
 
 ```python
-import numpy as np
-from hw03prog import mat_eq, mat_vec_mul
 from gauss import gaussian_elimination
 
-# Example matrix and vector
-A = np.array([[1, 2], [3, 4]])
-v = np.array([5, 6])
+matrix = [
+    [2, 1, -1, 8],
+    [-3, -1, 2, -11],
+    [-2, 1, 2, -3]
+]
 
-# Matrix-vector multiplication
-result = mat_vec_mul(A, v)
-print("Matrix-Vector Multiplication Result:", result)
-
-# Gaussian Elimination
-B = np.array([[2, 1, -1, 8],
-              [-3, -1, 2, -11],
-              [-2, 1, 2, -3]], dtype=float)
-gaussian_elimination(B)
-print("Reduced Echelon Form:", B)
+result = gaussian_elimination(matrix)
+print("Row-Echelon form of the matrix:")
+for row in result:
+    print(row)
 ```
+
+### Matrix Operations
+
+```python
+from matrix_operation import add_matrices, subtract_matrices, multiply_matrices, invert_matrix
+
+matrix1 = [
+    [1, 2],
+    [3, 4]
+]
+
+matrix2 = [
+    [5, 6],
+    [7, 8]
+]
+
+print("Matrix Addition:")
+print(add_matrices(matrix1, matrix2))
+
+print("Matrix Subtraction:")
+print(subtract_matrices(matrix1, matrix2))
+
+print("Matrix Multiplication:")
+print(multiply_matrices(matrix1, matrix2))
+
+print("Matrix Inversion:")
+print(invert_matrix(matrix1))
+```
+
+## Contributing
+
+If you would like to contribute to this project, please fork the repository and submit a pull request.
